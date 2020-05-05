@@ -28,14 +28,11 @@ Within the addNumbers function, invoke the callback function as many times as ne
 Return the modified array.
 ------------------------------------------------------------------------------------------------ */
 
-const addValues = (arr, value) => {
-  // Solution code here...
-};
+const addValues = (arr, value) => arr.push(value);
 
-const addNumbers = (num, arr, times, callback) => {
-  // Solution code here...
-};
-
+const addNumbers = (num, arr, times, callback) => 5 * (addValues([],8,));
+ 
+// addNumbers(8,[],5,addValues);
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
 
@@ -136,7 +133,7 @@ describe('Testing challenge 1', () => {
   });
 });
 
-xdescribe('Testing challenge 2', () => {
+describe('Testing challenge 2', () => {
   test('It should add the number 8 to the array five times', () => {
     expect(addNumbers(8, [], 5, addValues)).toStrictEqual([8, 8, 8, 8, 8]);
     expect(addNumbers(8, [], 5, addValues).length).toStrictEqual(5);
