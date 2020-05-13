@@ -81,6 +81,11 @@ For example, notInFirstArray([1,2,3], [1,2,3,4]) returns [4].
 
 const notInFirstArray = (forbiddenValues, arr) => {
   // Solution code here...
+  const moreSlim = arr.filter((val) =>{
+   const realSlim = !forbiddenValues.includes(val);
+    return realSlim;
+  })
+  return moreSlim;
 };
 
 /* ------------------------------------------------------------------------------------------------
