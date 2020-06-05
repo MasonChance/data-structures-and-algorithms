@@ -40,16 +40,15 @@ let $ = createSnippetWithJQuery(`
 //     expect($('section:nth-child(3) h3').text()).toStrictEqual('167');
 //     expect($('section:nth-child(4) p').text()).toStrictEqual('red');
 
-
+//FIXME: THIS WORKS IN MY TEST ENVIRONMENT, JEST IS SAYING IT RECEIVES AN EMPTY STRING. 
 const templateWithJQuery = () => {
-  // Solution code here...
-  // get target set const = to templateId. use const to access elements w/.notation
-  const html = $('#template').clone();
-  // append to target 
-  // use above variables to append using "templates" to add the data to the page. (.write?);
-  html.children('h2').append(starWarsPeople.forEach(starWarsPeople.name));
-  html.children('h3').append(starWarsPeople.forEach(starWarsPeople.height));
-  html.children('p').append(starWarsPeople.forEach(starWarsPeople.eye_color));
+  const secTemplate = $('#template').clone();
+  starWarsPeople.forEach((curr) => {
+    secTemplate.children('h2').text(`${curr.name}`).appendTo($('#template'))
+    secTemplate.children('h3').text(`${curr.height}`).appendTo($('#template'))
+    secTemplate.children('p').text(`${curr.eye_color}`).appendTo($('#template'))
+ })
+
 }
 
 /* ------------------------------------------------------------------------------------------------
@@ -67,7 +66,9 @@ For example, if the input is 'Welcome', the output will be:
 
 const howMuchPencil = (str) => {
   let result = [];
-  // Solution code here...
+  for(let i = 0; i <= str.length; i++){
+    result.push(str.slice(i));
+  }
   return result;
 };
 
@@ -79,9 +80,7 @@ Write a function name wordsToCharList that, given a string as input, returns a n
 For example, wordsToCharList('gregor') returns ['g','r','e','g','o','r'].
 ------------------------------------------------------------------------------------------------ */
 
-const wordsToCharList = (arr) => {
-  // Solution code here...
-};
+const wordsToCharList = (arr) => arr.split('');
 
 
 /* ------------------------------------------------------------------------------------------------
@@ -127,21 +126,25 @@ const gruffaloCrumble = {
 
 const listFoods = (recipe) => {
   let result = [];
-  // Solution code here...
+  recipe.ingredients.forEach((curr) => {  
+  let unit = curr.slice(curr.indexOf(' ', curr.indexOf(' ') + 2))
+
+  result.push(unit.slice((unit.indexOf(' ') + 1)));
+  })
   return result;
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5 - Stretch Goal
 
-Write a function named splitFoods that uses split to produce the same output as Challenge 3.
+Write a function named splitFoods that uses split to produce the same output as Challenge 4.
 
 You may also use other string or array methods.
 ------------------------------------------------------------------------------------------------ */
 
 const splitFoods = (recipe) => {
   let result = [];
-  // Solution code here...
+  recipe.ingredients.forEach()
   return result;
 };
 
@@ -257,7 +260,7 @@ describe('Testing challenge 1', () => {
   })
 });
 
-xdescribe('Testing challenge 2', () => {
+describe('Testing challenge 2', () => {
   test('It should return a list of shortening words', () => {
     expect(howMuchPencil('Welcome')).toStrictEqual(['Welcome', 'elcome', 'lcome', 'come', 'ome', 'me', 'e', '']);
     expect(howMuchPencil('Welcome').length).toStrictEqual(8);
@@ -266,7 +269,7 @@ xdescribe('Testing challenge 2', () => {
   });
 });
 
-xdescribe('Testing challenge 3', () => {
+describe('Testing challenge 3', () => {
   test('It should return an array of individual letters', () => {
     expect(wordsToCharList('Gregor')).toStrictEqual(['G', 'r', 'e', 'g', 'o', 'r']);
     expect(wordsToCharList('Gregor').length).toStrictEqual(6);
@@ -275,7 +278,7 @@ xdescribe('Testing challenge 3', () => {
   });
 });
 
-xdescribe('Testing challenge 4', () => {
+describe('Testing challenge 4', () => {
   test('It should return a list of foods', () => {
     expect(listFoods(gruffaloCrumble)).toStrictEqual(['Gruffalo', 'oats', 'brown sugar', 'flour', 'pure maple syrup', 'chopped nuts', 'baking soda', 'baking powder', 'cinnamon', 'melted butter', 'fresh water']);
     expect(listFoods(gruffaloCrumble).length).toStrictEqual(11);
