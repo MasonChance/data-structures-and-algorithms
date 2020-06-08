@@ -31,12 +31,13 @@ Return the modified array.
 const addValues = (arr, value) => arr.push(value);
 
 const addNumbers = (num, arr, times, callback) => {
-  while(arr.length < times){
-    callback(arr, num);
+
+  for(let i = 0; i < times; i++){
+    callback(arr, num)
   }
-  return arr;
-};
- 
+  return arr; 
+}
+
 // addNumbers(8,[],5,addValues);
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
@@ -50,15 +51,17 @@ Then, write a function named removeElements that takes in an array and a callbac
 Return the modified array.
 ------------------------------------------------------------------------------------------------ */
 
-const removeOne = (num, arr) => {//nonfruitful function?
+const removeOne = (num, arr) => {
   if(num % 3 === 2){
-    arr.pop();
+    arr.pop()
   }
+  return arr; 
 };
 
 const removeElements = (arr, callback) => {
-  for(let i = 0; i < arr.length; i++){
-    callback(arr[i], arr);
+  for(let i = 0; i <= arr.length; i++){
+    callback(i, arr);
+
   }
   return arr; 
 };
@@ -70,7 +73,9 @@ Write a function named removeWithForEach that produces the same output as challe
 ------------------------------------------------------------------------------------------------ */
 
 const removeWithForEach = (arr, callback) => {
-  arr.forEach(curr => callback(curr, arr))
+
+  arr.forEach((curr) => callback(curr, arr))
+
   return arr; 
 };
 
@@ -83,12 +88,18 @@ This function should use forEach again, but rather than taking in a callback as 
 
 This anonymous function should accept up to three arguments: the element, the index, and the array.
 ------------------------------------------------------------------------------------------------ */
-
+// //const removeOne = (num, arr) => {
+//   if(num % 3 === 2){
+//     arr.pop()
+//   }
+//   return arr; 
+// };
 const removeWithAnon = (arr) => {
   arr.forEach((curr, idx, arr) => {
     if(curr % 3 === 2){
       arr.pop()
     }
+    return arr; 
   })
   return arr; 
 };
@@ -111,13 +122,14 @@ This function should use forEach to populate your grocery list based on the stor
 ------------------------------------------------------------------------------------------------ */
 
 const createList = (availableItems) => {
-  const onShelf = [];
-  availableItems.forEach((curr, idx, arr) => {
+  const inStock = [];
+  availableItems.forEach((curr) => {
     if(curr.available === true){
-      onShelf.push(curr.name)
+      inStock.push(curr.name)
     }
   })
-  return onShelf;
+  return inStock;
+
 };
 
 /* ------------------------------------------------------------------------------------------------
