@@ -41,7 +41,7 @@ Note: You might need to use the same method more than once.
 For example, count(5, [[1, 3, 5, 7, 9], [5, 5, 5], [1, 2, 3]]) returns 4.
 ------------------------------------------------------------------------------------------------ */
 
-const count = (target, input) => input.map(val => val.filter(curr => (curr === target)/*.reduce()*/)/*.reduce */)/*[0]*/ 
+const count = (target, input) => input.reduce((acc, curr) => (curr.filter(check => check === target).length) + acc, 0)
 ;
 
 /* ------------------------------------------------------------------------------------------------
@@ -54,9 +54,7 @@ You may want to use filter, map, or reduce for this problem, but are not require
 For example, [[1, 2, 3, 4, 5], [6, 7, 2, 4, 5, 7], [9, 2, 3, 6,]] returns 66.
 ------------------------------------------------------------------------------------------------ */
 
-const totalSum = (input) => {
-  // Solution code here...
-};
+const totalSum = (input) => input.reduce((acc, curr) => acc + curr.reduce((acc, val) => acc + val, 0), 0);
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
@@ -67,11 +65,15 @@ This function should first remove any elements that are not numbers or are not d
 
 This function should then raise 2 to the power of the resulting numbers, returning an array of arrays.
 
-For example, [ [0,2,5,4], [2,4,10], [] ] should return [ [1, 32], [1024], [] ].
+FIXME: For example, [ [0,2,5,4], [2,4,10], [] ] should return [ [<1>, 32], [1024], [] ].
 ------------------------------------------------------------------------------------------------ */
 
 const divisibleByFiveTwoToThePower = (input) => {
-  // Solution code here...
+
+  return input.map(curr =>  
+    curr.filter(num => Number.isSafeInteger(num) && num % 5 === 0)
+    .map(val => Math.pow(2, val))
+    )
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -212,7 +214,7 @@ describe('Testing challenge 2', () => {
   });
 });
 
-xdescribe('Testing challenge 3', () => {
+describe('Testing challenge 3', () => {
   test('It should add all the numbers in the arrays', () => {
     const nums = [[1, 2, 3, 4, 5], [6, 7, 2, 4, 5, 7], [9, 2, 3, 6,]];
 
@@ -220,7 +222,7 @@ xdescribe('Testing challenge 3', () => {
   });
 });
 
-xdescribe('Testing challenge 4', () => {
+describe('Testing challenge 4', () => {
   test('It should return numbers divisible by five, then raise two to the power of the resulting numbers', () => {
     expect(divisibleByFiveTwoToThePower([[10, 20, 5, 4], [5, 6, 7, 9], [1, 10, 3]])).toStrictEqual([[1024, 1048576, 32], [32], [1024]]);
   });
