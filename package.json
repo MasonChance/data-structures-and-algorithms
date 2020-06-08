@@ -11,6 +11,11 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "jest": "^24.1.0"
+    "cheerio": "^1.0.0-rc.3",
+    "express": "^4.17.1",
+    "jest": "^24.1.0",
+    "mustache": "^4.0.1",
+    "superagent": "^5.2.2",
+    "supertest": "^4.0.2"
   }
 }
